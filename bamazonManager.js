@@ -55,7 +55,16 @@ var inquireAddProduct = ()=>{
             name: "initialStock"
         }
     ]).then(answers => {
-        addProduct(answers, startScreen);
+        if(parseInt(answers.price) < 0 || parseInt(answers.price) === NaN){
+            console.log("Price input must be a positive number or zero. Try again.");
+            inquireAddProduct();
+        }else if (parseInt(answers.initialStock) < 0 || parseInt(answers.initialStock) === NaN){
+            console.log("Initial stock must be a positive number or zero. Try again.");
+            inquireAddProduct();
+        }else{
+            addProduct(answers, startScreen);
+        }
+
     });
 }
 var addToInv = (answers, callback) =>{
@@ -145,6 +154,7 @@ var startScreen = () =>{
                 inquireAddProduct();
                 break;
             case "Exit":
+                console.log("Goodbye!");
                 connection.end();
                 break;
         }
