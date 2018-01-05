@@ -108,7 +108,7 @@ var inquireAddInv = () =>{
 var prepAddInv = () =>{
     viewProducts(inquireAddInv);
 }
-var viewLowInv = () =>{
+var viewLowInv = (callback) =>{
     let query = connection.query("SELECT * FROM products WHERE stock_quantity < 5", 
     function(err,res){
         if(res.length === 0){
