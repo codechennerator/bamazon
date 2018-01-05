@@ -30,7 +30,7 @@ var addProduct = (answers, callback) =>{
             }
         }
     );
-    console.log(query.sql);
+    
 }
 var inquireAddProduct = ()=>{
     inquirer.prompt([
