@@ -16,12 +16,14 @@ connection.connect(function(err){
     if (err) throw err;
 });
 
-var fulfillOrder = (answers, quantityRemaining, indPrice, product) => {
+var fulfillOrder = (answers, quantityRemaining, indPrice, product,curr_prod_sales) => {
+    let updatedSales = curr_prod_sales + indPrice*answers.amountToPurchase;
     let query = connection.query(
         "UPDATE products SET ? WHERE ?",
         [
             {
-                stock_quantity: quantityRemaining
+                stock_quantity: quantityRemaining,
+                product_sales: updatedSales
             },
             {
                 item_id: answers.itemId
@@ -39,12 +41,12 @@ var fulfillOrder = (answers, quantityRemaining, indPrice, product) => {
 }
 var isInStock = (answers) =>{
     let query = connection.query(
-        "SELECT stock_quantity, price, product_name FROM products WHERE ?",
+        "SELECT stock_quantity, price, product_name, product_sales FROM products WHERE ?",
         [{
             item_id: answers.itemId
         }],
         function(err,res){
-            console.log(res);
+            
             if (err){
                 console.log(err);
             }else{
@@ -54,7 +56,7 @@ var isInStock = (answers) =>{
                 }else{
                     console.log("Success!");
                     let quantityRemaining = res[0].stock_quantity - parseInt(answers.amountToPurchase);
-                    fulfillOrder(answers,quantityRemaining,res[0].price, res[0].product_name);
+                    fulfillOrder(answers,quantityRemaining,res[0].price, res[0].product_name, res[0].product_sales);
                 }
             }
         }

@@ -9,7 +9,15 @@ CREATE TABLE products(
     department_name VARCHAR(100) NOT NULL,
     price DECIMAL(11,2) NULL,
     stock_quantity INT(11) NOT NULL,
+    product_sales DECIMAL(11,2) NOT NULL,
     PRIMARY KEY(item_id)
+);
+
+CREATE TABLE departments(
+    department_id INT NOT NULL AUTO_INCREMENT,
+    department_name VARCHAR(100) NOT NULL,
+    over_head_costs DECIMAL(11,2) NULL,
+    PRIMARY KEY(department_id)
 );
 
 /*Dummy Inserts*/
@@ -26,4 +34,16 @@ VALUES
     ("couch", "furniture", 800.00, 10),
     ("bed", "furniture", 950.00, 10),
     ("desk", "furniture", 500.00, 10);
+
+INSERT INTO departments(department_name, over_head_costs)
+VALUES 
+    ("electronics", 3000),
+    ("books", 600),
+    ("furniture", 2000);
+
+/*The following joins the two tables, allowing a supervisor to see the how well product_sales is doing in each department*/
+SELECT departments.department_id, departments.department_name, departments.over_head_costs, products.product_sales, products.product_sales - departments.over_head_costs AS total_profit
+FROM departments
+INNER JOIN products ON departments.department_name = products.department_name
+GROUP BY departments.department_id;
 
