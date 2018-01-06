@@ -46,7 +46,7 @@ var inquireDepartmentInfo = () =>{
         })
 }
 var viewProductSales = (callback) =>{
-    let sql = `SELECT departments.department_id, departments.department_name, departments.over_head_costs, products.product_sales, products.product_sales - departments.over_head_costs AS total_profit
+    let sql = `SELECT departments.department_id, departments.department_name, departments.over_head_costs, SUM(products.product_sales) AS product_sales, SUM(products.product_sales) - departments.over_head_costs AS total_profit
     FROM departments
     INNER JOIN products ON departments.department_name = products.department_name
     GROUP BY departments.department_id`;

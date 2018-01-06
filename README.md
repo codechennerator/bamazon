@@ -53,3 +53,9 @@ Upon selecting Add New Product, the manager is prompted several times for produc
 On exit, the program ends.
 ![manager5](md_assets/manager5.png)
 
+##bamazonSupervisor
+On start, the console will print a menu for the supervisor.
+
+The supervisor can View the departments as well as create new departments. 
+The menu is automatically brought up again until the supervisor decides to Exit.
+![supervisor0](md_assets/supervisor0.png)
