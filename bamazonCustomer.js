@@ -67,7 +67,7 @@ var inquirePurchase = () => {
     inquirer.prompt([
         {
             type: "input",
-            message: "Enter the ID of the item you would like to purchase",
+            message: "Enter the ID of the item you would like to purchase: ",
             name: "itemId"
         },
         {

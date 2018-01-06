@@ -25,5 +25,11 @@ CREATE TABLE departments(
 );
 ```
 ## bamazonCustomer.js
-On start, the console will print out all the columns of the products table.
-![Image](md_assets/customer0.png)
+On start, the console will print out all the columns (except product_sales) of the products table.
+![customer0](md_assets/customer0.png)
+
+The customer may then enter what and how many he wants to buy.
+![customer1](md_assets/customer1.png)
+
+If there is insufficient quantity, the customer is notified the store has an insufficient quantity and is prompted again.
+![customer2](md_assets/customer2.png)
