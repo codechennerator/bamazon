@@ -33,7 +33,7 @@ var fulfillOrder = (answers, quantityRemaining, indPrice, product,curr_prod_sale
             if (err) throw err;
             let totalPrice = answers.amountToPurchase * indPrice;
             console.log("Thank you for buying " + answers.amountToPurchase+ " " + product + "(s).");
-            console.log("Total Price: " + indPrice*answers.amountToPurchase);
+            console.log("Total Price: $" + indPrice*answers.amountToPurchase);
             
         }
     );
@@ -88,7 +88,7 @@ var inquirePurchase = () => {
 }
 var displayInventory = () => {
     let query = connection.query(
-        "SELECT * FROM products", 
+        "SELECT product_name, department_name, price, stock_quantity FROM products", 
         function(err, res){
             resLength = res.length;
             console.log(columnify(res));
