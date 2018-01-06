@@ -26,5 +26,5 @@ CREATE TABLE departments(
 ```
 ## bamazonCustomer.js
 On start, the console will print out all the columns of the products table.
-![]
+![alt_text]
 (md_assets/customer0.png)
