@@ -88,7 +88,7 @@ var inquirePurchase = () => {
 }
 var displayInventory = () => {
     let query = connection.query(
-        "SELECT product_name, department_name, price, stock_quantity FROM products", 
+        "SELECT item_id, product_name, department_name, price, stock_quantity FROM products", 
         function(err, res){
             resLength = res.length;
             console.log(columnify(res));
